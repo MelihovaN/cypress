@@ -7,7 +7,8 @@
     "cy:open": "npx cypress open",
     "cy:run": "npx cypress run",
     "cy:dashboard": "npx cypress run --record --key 551fda59-605f-48a5-ad7c-d2277b16196d",
-    "cy:dashboard prod": "npx cypress run --config-file prod-config.json --spec 'cypress/e2e/santa-prod.cy.js'"
+    "cy:open:prod": "npx cypress open --config baseUrl='https://santa-secret.ru/' --env password=Test12345",
+    "cy:dashboard:prod": "npx cypress run --record --key 551fda59-605f-48a5-ad7c-d2277b16196d --config baseUrl='https://santa-secret.ru/' --env password=Test12345"
   },
   "keywords": [
     "cypress"
