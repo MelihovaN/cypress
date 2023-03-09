@@ -8,10 +8,12 @@
     "cy:run": "npx cypress run",
     "cy:dashboard": "npx cypress run --record --key 551fda59-605f-48a5-ad7c-d2277b16196d",
     "cy:run:prod": "npx cypress run --spec 'cypress/e2e/santa-prod.cy.js'  --config baseUrl='https://santa-secret.ru/' --env password=Test12345",
-    "cy:dashboard:prod": "npx cypress run --record --key 551fda59-605f-48a5-ad7c-d2277b16196d --config baseUrl='https://santa-secret.ru/' --env password=Test12345",
+    "cy:run:stage": "npx cypress run --spec 'cypress/e2e/santa-stage.cy.js'",
+    "cy:dashboard:prod:chrome": "npm run cy:run:prod -- --record --key 551fda59-605f-48a5-ad7c-d2277b16196d -- --browser chrome",
+    "cy:dashboard:stage:electron": "npm run cy:run:stage -- --record --key 551fda59-605f-48a5-ad7c-d2277b16196d -- --browser electron",
     "cy:run:prod:chrome": "npx cypress run --browser chrome --spec 'cypress/e2e/santa-prod.cy.js'  --config baseUrl='https://santa-secret.ru/' --env password=Test12345",
     "cy:run:stage:electron": "npx cypress run --browser electron --spec 'cypress/e2e/santa-stage.cy.js'",
-    "cy:dashboard:all": "npm run cy:run:prod:chrome && cy:run:stage:electron --record --key 551fda59-605f-48a5-ad7c-d2277b16196d"
+    "cy:dashboard:all": "npm run cy:dashboard:prod:chrome && npm run cy:dashboard:stage:electron"
   },
   "keywords": [
     "cypress"
