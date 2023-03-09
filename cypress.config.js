@@ -1,7 +1,11 @@
-const { defineConfig } = require("cypress");
+//const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
   projectId: "sif9p6",
+  env: {
+    email: "melihova.qa@gmail.com",
+    password: "Test1234",
+  },
   e2e: {
     baseUrl: "https://staging.lpitko.ru",
     setupNodeEvents(on, config) {
@@ -9,3 +13,5 @@ module.exports = defineConfig({
     },
   },
 });
+
+// npx cypress run --config baseUrl="https://santa-secret.ru/"
