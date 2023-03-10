@@ -23,3 +23,15 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add("enterText", (selector, text) => {
+  cy.get(selector).type(text);
+});
+
+Cypress.Commands.add("pressClick", (selector) => {
+  cy.get(selector).click();
+});
+
+Cypress.Commands.add("checkUrl", (endpoint) => {
+  cy.url().should("include", endpoint);
+});
