@@ -59,6 +59,17 @@ describe("Secret Sanat registration tests", () => {
     cy.get(".frm-wrapper__top__error")
       .contains("Некорректный email")
       .and("have.class", "frm-wrapper__top__error");
+
+    //name-blank, email-blank
+    cy.get(registrationElements.nameField).clear();
+    cy.get(registrationElements.emailField).clear();
+    cy.get(registrationElements.registrationButton).click();
+    cy.get(
+      ":nth-child(3) > .frm-wrapper__top > .frm-wrapper__top__error"
+    ).contains("Обязательное поле");
+    cy.get(
+      ":nth-child(4) > .frm-wrapper__top > .frm-wrapper__top__error"
+    ).contains("Обязательное поле");
   });
   it("Delite user", () => {
     cy.get(".form-auth__header__subtitle > a > .txt-secondary--med").click();
