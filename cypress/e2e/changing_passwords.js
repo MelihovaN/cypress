@@ -1,13 +1,12 @@
 const loginPageElements = require("../fixtures/pages/loginPageSelectors.json");
+const accountElements = require("../fixtures/pages/accountPageSelectors.json");
 import { LoginPage } from "../pages/loginPage";
 
 describe("santa login - UI", () => {
   let loginPage = new LoginPage();
   beforeEach("visit and login", () => {
     cy.visit("/");
-    cy.pressClick(
-      ".layout-1__header-wrapper-fixed > .layout-1__header > .header > .header__items > a > .base--clickable > .header-item__text > .txt--med"
-    );
+    cy.pressClick(loginPageElements.loginLink);
     loginPage.login(Cypress.env("email"), Cypress.env("password"));
     cy.contains("Уведомления").should("exist");
   });
@@ -16,35 +15,24 @@ describe("santa login - UI", () => {
     let newPassword = "Test12345";
     //cy.changePassword(newPassword);
     cy.pressClick(loginPageElements.account);
-    cy.enterText(".layout-column-start > :nth-child(1) > .frm", newPassword);
-    cy.enterText(
-      ":nth-child(4) > .form-page-group__main > .layout-column-start > :nth-child(2) > .frm",
-      newPassword
-    );
-    cy.pressClick(".layout-row-end > .btn-service");
+    cy.enterText(accountElements.passwordField1, newPassword);
+    cy.enterText(accountElements.passwordField2, newPassword);
+    cy.pressClick(accountElements.savePassword);
     cy.contains("Выйти с сайта").click();
 
     //User can not login with old password"
-    cy.pressClick(
-      ".layout-1__header-wrapper-fixed > .layout-1__header > .header > .header__items > a > .base--clickable > .header-item__text > .txt--med"
-    );
+    cy.pressClick(loginPageElements.loginLink);
     loginPage.login(Cypress.env("email"), Cypress.env("password"));
     cy.contains("Неверное имя пользователя или пароль").should("exist");
 
     // login with new password
     cy.get(loginPageElements.passwordField).clear().type(newPassword);
-    cy.get(loginPageElements.registrationButton).click();
+    cy.get(loginPageElements.loginButton).click();
 
     //Change to the old password
     cy.pressClick(loginPageElements.account);
-    cy.enterText(
-      ".layout-column-start > :nth-child(1) > .frm",
-      Cypress.env("password")
-    );
-    cy.enterText(
-      ":nth-child(4) > .form-page-group__main > .layout-column-start > :nth-child(2) > .frm",
-      Cypress.env("password")
-    );
-    cy.pressClick(".layout-row-end > .btn-service");
+    cy.enterText(accountElements.passwordField1, Cypress.env("password"));
+    cy.enterText(accountElements.passwordField2, Cypress.env("password"));
+    cy.pressClick(accountElements.savePassword);
   });
 });
