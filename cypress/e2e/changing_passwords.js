@@ -1,4 +1,4 @@
-const registrationElements = require("../fixtures/pages/registrationSelectors.json");
+const loginPageElements = require("../fixtures/pages/loginPageSelectors.json");
 import { LoginPage } from "../pages/loginPage";
 
 describe("santa login - UI", () => {
@@ -15,7 +15,7 @@ describe("santa login - UI", () => {
   it("user can change the password", () => {
     let newPassword = "Test12345";
     //cy.changePassword(newPassword);
-    cy.pressClick(registrationElements.account);
+    cy.pressClick(loginPageElements.account);
     cy.enterText(".layout-column-start > :nth-child(1) > .frm", newPassword);
     cy.enterText(
       ":nth-child(4) > .form-page-group__main > .layout-column-start > :nth-child(2) > .frm",
@@ -32,11 +32,11 @@ describe("santa login - UI", () => {
     cy.contains("Неверное имя пользователя или пароль").should("exist");
 
     // login with new password
-    cy.get(registrationElements.emailField).clear().type(newPassword);
-    cy.get(registrationElements.registrationButton).click();
+    cy.get(loginPageElements.passwordField).clear().type(newPassword);
+    cy.get(loginPageElements.registrationButton).click();
 
     //Change to the old password
-    cy.pressClick(registrationElements.account);
+    cy.pressClick(loginPageElements.account);
     cy.enterText(
       ".layout-column-start > :nth-child(1) > .frm",
       Cypress.env("password")
