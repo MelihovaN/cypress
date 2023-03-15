@@ -17,10 +17,10 @@ describe("Login page tests", () => {
     cy.get(".hint > .txt-secondary").contains("В форме допущены ошибки");
   });
   it("Unregistered user data", () => {
-    let newEmail = faker.internet.email();
-    let newPassword = faker.internet.password();
-    cy.get(registrationElements.nameField).type(newEmail);
-    cy.get(registrationElements.emailField).type(newPassword);
+    let fakeEmail = faker.internet.email();
+    let fakePassword = faker.internet.password();
+    cy.get(registrationElements.nameField).type(fakeEmail);
+    cy.get(registrationElements.emailField).type(fakePassword);
     cy.get(registrationElements.registrationButton).click();
     cy.get(".hint > .txt-secondary").contains(
       "Мы не нашли пользователя с таким email"

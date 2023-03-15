@@ -35,3 +35,13 @@ Cypress.Commands.add("pressClick", (selector) => {
 Cypress.Commands.add("checkUrl", (endpoint) => {
   cy.url().should("include", endpoint);
 });
+
+Cypress.Commands.add("changePassword", (newPassword) => {
+  cy.pressClick(registrationElements.account);
+  cy.enterText(".layout-column-start > :nth-child(1) > .frm", newPassword);
+  cy.enterText(
+    ":nth-child(4) > .form-page-group__main > .layout-column-start > :nth-child(2) > .frm",
+    newPassword
+  );
+  cy.pressClick(".layout-row-end > .btn-service");
+});
