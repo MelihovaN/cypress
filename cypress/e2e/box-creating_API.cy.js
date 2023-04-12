@@ -84,8 +84,8 @@ describe("creating and deleting the box -API", () => {
       },
     }).then((response) => {
       expect(response.status).to.eq(200);
-      expect(response.body.box.key).to.eq(fakeKey),
-        expect(response.body.box.name).to.eq(fakeName);
+      expect(response.body.box.key).to.eq(fakeKey);
+      expect(response.body.box.name).to.eq(fakeName);
       expect(response.body.box.cashLimit).to.eq(15);
     });
     //list of the boxes
